@@ -1,5 +1,5 @@
 import { basename, extname, join, parse } from 'path';
-import * as glob from 'glob';
+import { globSync, hasMagic } from 'glob';
 import { uniqueFilter } from '../../shared/array';
 import { ModelMatch, SequelizeOptions } from './sequelize-options';
 import { ModelCtor } from '../../model/model/model';
@@ -39,10 +39,11 @@ export function getModels(arg: (ModelCtor | string)[], modelMatch: ModelMatch): 
   const hasSupportedExtension = (path) => ['.ts', '.js'].indexOf(extname(path)) !== -1;
 
   if (arg && typeof arg[0] === 'string') {
-    return arg.reduce((models: any[], dir) => {
-      if (!glob.hasMagic(dir) && !hasSupportedExtension(dir)) dir = join(dir as string, '/*');
-      const _models = glob
-        .sync(dir as string)
+    const modelPaths = arg as string[];
+
+    return modelPaths.reduce((models: any[], dir) => {
+      if (!hasMagic(dir) && !hasSupportedExtension(dir)) dir = join(dir, '/*');
+      const _models = globSync(dir)
         .filter(isImportable)
         .map(getFullfilepathWithoutExtension)
         .filter(uniqueFilter)

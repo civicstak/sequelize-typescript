@@ -40,7 +40,7 @@
   "types": "dist/index.d.ts",
   "browser": "dist/browser/index.js",
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=18.0.0"
   },
   "release-it": {
     "git": {
@@ -93,7 +93,7 @@
     "report-dir": "./coverage"
   },
   "dependencies": {
-    "glob": "7.2.0"
+    "glob": "^13.0.6"
   },
   "devDependencies": {
     "@commitlint/cli": "17.2.0",
