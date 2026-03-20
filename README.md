@@ -1,8 +1,8 @@
-# sequelize-typescript
+# @civicstak/sequelize-typescript
 
 [![Build Status](https://github.com/sequelize/sequelize-typescript/workflows/Node.js%20CI/badge.svg)](https://github.com/sequelize/sequelize-typescript/actions?query=workflow%3A%22Node.js+CI%22)
 [![codecov](https://codecov.io/gh/sequelize/sequelize-typescript/branch/master/graph/badge.svg)](https://codecov.io/gh/sequelize/sequelize-typescript)
-[![NPM](https://img.shields.io/npm/v/sequelize-typescript.svg)](https://www.npmjs.com/package/sequelize-typescript)
+[![NPM](https://img.shields.io/npm/v/%40civicstak%2Fsequelize-typescript.svg)](https://www.npmjs.com/package/@civicstak/sequelize-typescript)
 
 Decorators and some other features for sequelize (v6).
 
@@ -43,7 +43,7 @@ Decorators and some other features for sequelize (v6).
 
 ```sh
 npm install --save-dev @types/node @types/validator
-npm install sequelize reflect-metadata sequelize-typescript
+npm install sequelize reflect-metadata @civicstak/sequelize-typescript
 ```
 
 Your `tsconfig.json` needs the following flags:
@@ -78,7 +78,7 @@ instead of deprecated way:
 ## Model definition
 
 ```typescript
-import { Table, Column, Model, HasMany } from 'sequelize-typescript';
+import { Table, Column, Model, HasMany } from '@civicstak/sequelize-typescript';
 
 @Table
 class Person extends Model {
@@ -96,7 +96,7 @@ class Person extends Model {
 ### Less strict
 
 ```typescript
-import { Table, Model } from 'sequelize-typescript';
+import { Table, Model } from '@civicstak/sequelize-typescript';
 
 @Table
 class Person extends Model {}
@@ -106,7 +106,7 @@ class Person extends Model {}
 
 ```typescript
 import { Optional } from 'sequelize';
-import { Table, Model } from 'sequelize-typescript';
+import { Table, Model } from '@civicstak/sequelize-typescript';
 
 interface PersonAttributes {
   id: number;
@@ -185,7 +185,7 @@ the js type can be inferred automatically (see [Type inference](#type-inference)
 If the type cannot or should not be inferred, use:
 
 ```typescript
-import {DataType} from 'sequelize-typescript';
+import {DataType} from '@civicstak/sequelize-typescript';
 
   @Column(DataType.TEXT)
   name: string;
@@ -268,7 +268,7 @@ Except for minor variations _sequelize-typescript_ will work like pure sequelize
 To make the defined models available, you have to configure a `Sequelize` instance from `sequelize-typescript`(!).
 
 ```typescript
-import { Sequelize } from 'sequelize-typescript';
+import { Sequelize } from '@civicstak/sequelize-typescript';
 
 const sequelize = new Sequelize({
   database: 'some_db',
@@ -292,7 +292,7 @@ sequelize.addModels(['path/to/models']);
 ### globs
 
 ```typescript
-import {Sequelize} from 'sequelize-typescript';
+import {Sequelize} from '@civicstak/sequelize-typescript';
 
 const sequelize =  new Sequelize({
         ...
@@ -319,7 +319,7 @@ For example, if your models are named `user.model.ts`, and your class is called
 `User`, you can match these two by using the following function:
 
 ```typescript
-import {Sequelize} from 'sequelize-typescript';
+import {Sequelize} from '@civicstak/sequelize-typescript';
 
 const sequelize =  new Sequelize({
   models: [__dirname + '/models/**/*.model.ts']
@@ -334,7 +334,7 @@ will be called with its exported members. E.g. for the following file
 
 ```TypeScript
 //user.model.ts
-import {Table, Column, Model} from 'sequelize-typescript';
+import {Table, Column, Model} from '@civicstak/sequelize-typescript';
 
 export const UserN = 'Not a model';
 export const NUser = 'Not a model';
