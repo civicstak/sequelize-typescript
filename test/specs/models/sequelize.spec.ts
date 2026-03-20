@@ -300,6 +300,22 @@ describe('sequelize', () => {
       expect(sequelizeFolder['models']).to.have.property('UserDir', UserDir);
     });
 
+    it('should load exact files from a brace pattern', () => {
+      const db = '__';
+      const sequelizeFolder = new Sequelize({
+        database: db,
+        dialect: 'sqlite',
+        username: 'root',
+        password: '',
+        storage: ':memory:',
+        logging: !('DISABLE_LOGGING' in process.env),
+        models: [join(__dirname, '/../../models/globs/match-files/{AddressDir,UserDir}.ts')],
+      });
+
+      expect(sequelizeFolder['models']).to.have.property('AddressDir', AddressDir);
+      expect(sequelizeFolder['models']).to.have.property('UserDir', UserDir);
+    });
+
     it('should load classes from folders and from glob', () => {
       const db = '__';
       const sequelizeGlobFolder = new Sequelize({
